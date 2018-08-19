@@ -13,6 +13,7 @@
 - Lightweight UI rendering via [choo](https://choo.io)!
 - Minimal transpiling via select [Babel](https://babeljs.io) modules!
 - Quick bundling via [rollup](https://rollupjs.org)!
+- Efficient Sass compilation via [Dart Sass](https://github.com/sass/dart-sass)!
 - Sensible linting via [ESLint](https://eslint.org)!
 - Not a shit-ton of dependencies! (I can't believe it's not bloat!)
 - EXCLAMATIONS
