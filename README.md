@@ -21,6 +21,9 @@
 - `npm i`
 
 ### Development
+- `npm run watch`
+
+### Production-ish
 - `npm start`
 
 ### Tests
@@ -33,4 +36,4 @@ Together, you and I will make the Web a better place. Let's call this a silent m
 
 ### TODO
 - Add more meat to this. This is intended as a starting point for my own future apps.
-- Add Sass files and package script.
+- ~~Add Sass files and package script.~~

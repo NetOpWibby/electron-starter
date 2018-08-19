@@ -6,6 +6,7 @@
 
 import babel from "rollup-plugin-babel";
 import commonjs from "rollup-plugin-commonjs";
+import postcss from "rollup-plugin-postcss";
 import { uglify } from "rollup-plugin-uglify";
 
 
@@ -33,9 +34,17 @@ export default [
     plugins: [
       commonjs(),
       babel({
-        exclude: "node_modules/**",
+        exclude: [
+          "node_modules/**",
+          "src/app/sass/**"
+        ],
       }),
-      uglify()
+      postcss({
+        extract: false,
+        plugins: [],
+        sourceMap: false
+      }),
+      (process.env.NODE_ENV !== "development" && uglify()) // only minify in production
     ]
   },
 
@@ -55,7 +64,7 @@ export default [
       babel({
         exclude: "node_modules/**",
       }),
-      uglify()
+      (process.env.NODE_ENV !== "development" && uglify()) // only minify in production
     ]
   },
 
@@ -69,7 +78,7 @@ export default [
       babel({
         exclude: "node_modules/**",
       }),
-      uglify()
+      (process.env.NODE_ENV !== "development" && uglify()) // only minify in production
     ]
   }
 ];
