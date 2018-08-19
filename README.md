@@ -4,7 +4,7 @@
 
 > A super simple and lightweight starting point for your Electron-based app.
 
-![electron-starter in action](preview.img)
+![electron-starter in action](preview.png)
 
 
 
