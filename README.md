@@ -11,7 +11,8 @@
 ### Features
 - ES7!
 - Lightweight UI rendering via [choo](https://choo.io)!
-- Quick transpiling via [rollup](https://rollupjs.org)!
+- Minimal transpiling via select [Babel](https://babeljs.io) modules!
+- Quick bundling via [rollup](https://rollupjs.org)!
 - Sensible linting via [ESLint](https://eslint.org)!
 - Not a shit-ton of dependencies! (I can't believe it's not bloat!)
 - EXCLAMATIONS
