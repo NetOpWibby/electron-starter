@@ -7,29 +7,110 @@
 import electron from "electron";
 import path from "path";
 import url from "url";
-import reloader from "electron-reloader";
 
-//  V A R I A B L E
+let reloader;
 
+if (process.env.NODE_ENV !== "production") reloader = require("electron-reloader");
+// import reloader from "electron-reloader";
+
+//  V A R I A B L E S
+
+// import dockMenu from "./menu/dock";
 import isDev from "./isDev";
+
+const {
+  app,
+  BrowserWindow,
+  Menu
+} = electron;
+
+const dockMenu = Menu.buildFromTemplate([
+  {
+    label: "New Window",
+    click () { console.log("New Window"); } // eslint-disable-line
+  }, {
+    label: "New Window with Settings",
+    submenu: [
+      { label: "Basic" },
+      { label: "Pro" }
+    ]
+  },
+  { label: "New Command..." }
+]);
+
+const windowStyles = {
+  width: 800, height: 600,
+  minWidth: 640, minHeight: 395,
+
+  backgroundColor: "#fcfcfc",
+  darkTheme: true,
+  title: "Electron Starter",
+  scrollBounce: true,
+  vibrancy: "appearance-based",
+
+  webPreferences: {
+    // nodeIntegration: false
+    // preload: "./preload.js"
+  }
+};
+
+let mainWindow;
 
 
 
 //  P R O G R A M
 
-isDev && reloader(module);
+if (isSecondInstance) app.quit();
+if (process.env.NODE_ENV !== "production") isDev && reloader(module);
 
-const { app, BrowserWindow } = electron;
+// Nothing nefarious is happening, these warnings are annoying.
+// I will figure out how to fix these properly later.
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
 
-// Keep a global reference of the window object, if you do not, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-let mainWindow;
+app.setName("Sample App");
+
+// This method will be called when Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
+app.on("ready", createWindow);
+
+app.on("activate", () => {
+  // Re-create a window in the app when the dock icon
+  // is clicked and there are no other windows open
+  if (!mainWindow) return createWindow();
+});
+
+app.setBadgeCount(0);
+app.dock.setMenu(dockMenu);
+
+app.on("will-finish-launching", () => {
+  // You would usually set up listeners for the `open-file` and `open-url`
+  // events here, and start the crash reporter and auto updater
+});
+
+app.on("window-all-closed", () => {
+  // if (process.platform !== "darwin") return app.quit();
+  return app.quit();
+});
+
+
+
+//  H E L P E R S
+
+const isSecondInstance = app.makeSingleInstance((commandLine, workingDirectory) => { // eslint-disable-line
+  if (mainWindow) { // Someone tried to run a second instance, we should focus our window.
+    if (mainWindow.isMinimized()) mainWindow.restore();
+    mainWindow.focus();
+  }
+
+  return true;
+});
 
 function createWindow() {
-  // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 800, height: 600 });
+  // Create the browser window...
+  mainWindow = new BrowserWindow(windowStyles);
 
-  // and load the index.html of the app.
+  // ...and load the index.html of the app
   mainWindow.loadURL(
     url.format({
       pathname: path.join(__dirname, "..", "src", "index.html"),
@@ -38,35 +119,12 @@ function createWindow() {
     })
   );
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  mainWindow.webContents.on("did-finish-load", () => {
+    mainWindow.show();
 
-  // Emitted when the window is closed.
-  mainWindow.on("closed", () => {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null;
+    // Need to figure out how to detect NODE=ENV in Electron
+    mainWindow.webContents.openDevTools({ mode: "detach" });
   });
+
+  mainWindow.on("closed", () => mainWindow = null);
 }
-
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on("ready", createWindow);
-
-// Quit when all windows are closed.
-app.on("window-all-closed", function() {
-  // On OS X it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== "darwin") app.quit();
-});
-
-app.on("activate", () => {
-  // On OS X it Is common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  if (mainWindow === null) createWindow();
-});
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.

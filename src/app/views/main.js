@@ -14,7 +14,7 @@ const TITLE = "✨🤩✨";
 
 //  P R O G R A M
 
-function view (state, emit) {
+function view(state, emit) {
   if (state.title !== TITLE) emit(state.events.DOMTITLECHANGE, TITLE);
 
   return html`

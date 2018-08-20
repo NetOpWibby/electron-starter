@@ -2,7 +2,20 @@
 
 
 
-// This file is required by the index.html file and will
-// be executed in the renderer process for that window.
+//  P A C K A G E
 
-// All of the Node.js APIs are available in this process.
+import electron from "electron";
+
+
+
+//  P R O G R A M
+
+const { ipcRenderer } = electron;
+
+const notif = new window.Notification("Electron Starter", {
+  body: "Oh sweet, looks like notifications work!",
+  silent: true // set to true for your own app sounds
+});
+
+// If notification is clicked, focus app
+notif.onclick = () => ipcRenderer.send("focusWindow", "main");

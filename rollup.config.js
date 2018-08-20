@@ -69,6 +69,9 @@ export default [
   },
 
   { // electron | renderer
+    external: [
+      "electron"
+    ],
     input: "src/main/renderer.js",
     output: [{
       file: "dist/renderer.js",
