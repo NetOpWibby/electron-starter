@@ -1,4 +1,4 @@
-"use strict"; require("./sass/style.css");
+"use strict";
 
 
 

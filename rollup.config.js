@@ -6,7 +6,6 @@
 
 import babel from "rollup-plugin-babel";
 import commonjs from "rollup-plugin-commonjs";
-import postcss from "rollup-plugin-postcss";
 import { uglify } from "rollup-plugin-uglify";
 
 
@@ -38,11 +37,6 @@ export default [
           "node_modules/**",
           "src/app/sass/**"
         ],
-      }),
-      postcss({
-        extract: false,
-        plugins: [],
-        sourceMap: false
       }),
       (process.env.NODE_ENV !== "development" && uglify()) // only minify in production
     ]

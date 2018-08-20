@@ -26,7 +26,6 @@
 		"rollup-plugin-babel": "beta",
 		"rollup-plugin-commonjs": "^9.1.5",
 		"rollup-plugin-node-resolve": "^3.3.0",
-		"rollup-plugin-postcss": "^1.6.2",
 		"rollup-plugin-uglify": "^4.0.0",
 		"sass": "^1.13.0",
 		"snazzy": "^7.1.1",
@@ -45,17 +44,17 @@
 		]
 	},
 	"scripts": {
-		"build": "rollup --config",
+		"build": "rollup --config && npm run css",
+		"css": "sass --update src/app/sass:dist --style compressed",
 		"package": "npm run build && electron-packager .",
-		"sass": "sass --watch src/app/sass:src/app/sass --style compressed",
 		"start": "npm run build && run-s start:*",
-		"start:css": "sass --update src/app/sass:src/app/sass --style compressed",
 		"start:electron": "electron .",
-		"test": "run-p test:*",
+		"test": "run-s test:*",
 		"test:dependencies": "updates -u ./",
 		"test:lint": "standardx --verbose | snazzy",
 		"watch": "run-p watch:*",
 		"watch:development": "rollup --config --watch",
-		"watch:electron": "electron ."
+		"watch:electron": "electron .",
+		"watch:sass": "sass --watch src/app/sass:dist --style compressed"
 	}
 }
