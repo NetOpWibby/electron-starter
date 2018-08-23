@@ -4,15 +4,15 @@ Thumbs.db
 
 
 
-# Folders
-.sass-cache
-build
-dist
-node_modules
-
-
-
 # Files
+.env
 *.css.map
 *.lock
 package-lock.json
+
+
+
+# Folders
+.sass-cache
+node_modules
+releases

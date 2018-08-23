@@ -1,7 +1,7 @@
 "use strict";
 
 
-
+/*
 //  P A C K A G E
 
 import electron from "electron";
@@ -12,10 +12,11 @@ import electron from "electron";
 
 const { ipcRenderer } = electron;
 
-const notif = new window.Notification("Electron Starter", {
+const notif = new window.Notification("Your App Name", {
   body: "Oh sweet, looks like notifications work!",
-  silent: true // set to true for your own app sounds
+  silent: false // set to true for your own app sounds
 });
 
 // If notification is clicked, focus app
 notif.onclick = () => ipcRenderer.send("focusWindow", "main");
+*/

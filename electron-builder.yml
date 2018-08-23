@@ -1,0 +1,31 @@
+appId: com.yourcompany.yourappname
+artifactName: "${productName}-${os}-${arch}-${version}.${ext}"
+asar: true
+compression: maximum
+copyright: "Copyright © Year Your Name Here"
+directories:
+  buildResources: assets
+  output: releases
+dmg:
+  background: "assets/appdmg.png"
+  contents:
+    - path: /Applications
+      type: link
+      x: 532
+      y: 249
+    - type: file
+      x: 281
+      y: 249
+  icon: "assets/icon.icns"
+  iconSize: 128
+files:
+  - "app/"
+  - "node_modules/"
+  - "package.json"
+forceCodeSigning: false
+mac:
+  category: public.app-category.productivity
+  minimumSystemVersion: "10.14"
+nodeGypRebuild: false
+npmRebuild: true
+productName: Your App Name

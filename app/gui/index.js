@@ -10,14 +10,13 @@ const choo = require("choo");
 
 //  P R O G R A M
 
-const app = choo();
+const app = window.yourappname = choo();
 
 if (process.env.NODE_ENV !== "production") {
   app.use(require("choo-devtools")());
 }
 
-app.route("/", require("./views/main"));
-app.route("/*", require("./views/404"));
+app.route("#", require("./views/main"));
 
 
 

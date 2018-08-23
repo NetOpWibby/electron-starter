@@ -17,13 +17,14 @@ export default [
     external: [
       "choo",
       "choo/html",
-      "choo-devtools"
+      "choo-devtools",
+      "nanocomponent"
     ],
-    input: "src/app/index.js",
+    input: "app/gui/index.js",
     output: [{
-      file: "dist/bundle.js",
+      file: "app/dist/bundle.js",
       format: "cjs",
-      name: "theapp",
+      name: "pidge",
       globals: {
         choo: "choo",
         "choo-devtools": "chooDevtools",
@@ -35,7 +36,7 @@ export default [
       babel({
         exclude: [
           "node_modules/**",
-          "src/app/sass/**"
+          "app/gui/sass/**"
         ],
       }),
       (process.env.NODE_ENV !== "development" && uglify()) // only minify in production
@@ -49,9 +50,9 @@ export default [
       "path",
       "url"
     ],
-    input: "src/main/main.js",
+    input: "app/main.js",
     output: [{
-      file: "dist/main.js",
+      file: "app/dist/main.js",
       format: "cjs"
     }],
     plugins: [
@@ -66,9 +67,9 @@ export default [
     external: [
       "electron"
     ],
-    input: "src/main/renderer.js",
+    input: "app/lib/renderer.js",
     output: [{
-      file: "dist/renderer.js",
+      file: "app/dist/renderer.js",
       format: "cjs"
     }],
     plugins: [
