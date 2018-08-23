@@ -18,9 +18,6 @@
 - Not a shit-ton of dependencies! (I can't believe it's not bloat!)
 - EXCLAMATIONS
 
-### First Run
-You will get an error message stating Electron could not be found if you run `npm run watch` without first building. Slight quirk for now. `npm start` works as expected the first time, every time.
-
 ### Installation
 - `npm i`
 
