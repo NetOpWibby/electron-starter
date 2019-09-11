@@ -18,9 +18,22 @@ const {
   BrowserWindow
 } = electron;
 
+const isSecondInstance = app.makeSingleInstance((commandLine, workingDirectory) => { // eslint-disable-line
+  if (mainWindow) { // Someone tried to run a second instance, we should focus our window.
+    if (mainWindow.isMinimized())
+      mainWindow.restore();
+
+    mainWindow.focus();
+  }
+
+  return true;
+});
+
 const windowStyles = {
-  width: 800, height: 600,
-  minWidth: 640, minHeight: 395,
+  width: 800,
+  height: 600,
+  minWidth: 640,
+  minHeight: 395,
 
   backgroundColor: "#fcfcfc",
   center: true,
@@ -35,7 +48,8 @@ let mainWindow;
 
 //  P R O G R A M
 
-if (isSecondInstance) app.quit();
+if (isSecondInstance)
+  app.quit();
 
 // Nothing nefarious is happening, these warnings are annoying.
 // I will figure out how to fix these properly later.
@@ -49,7 +63,8 @@ app.on("ready", createWindow);
 app.on("activate", () => {
   // Re-create a window in the app when the dock icon
   // is clicked and there are no other windows open
-  if (!mainWindow) return createWindow();
+  if (!mainWindow)
+    return createWindow();
 });
 
 app.on("will-finish-launching", () => {
@@ -58,22 +73,15 @@ app.on("will-finish-launching", () => {
 });
 
 app.on("window-all-closed", () => {
-  // if (process.platform !== "darwin") return app.quit();
+  // if (process.platform !== "darwin")
+  //   return app.quit();
+
   return app.quit();
 });
 
 
 
 //  H E L P E R S
-
-const isSecondInstance = app.makeSingleInstance((commandLine, workingDirectory) => { // eslint-disable-line
-  if (mainWindow) { // Someone tried to run a second instance, we should focus our window.
-    if (mainWindow.isMinimized()) mainWindow.restore();
-    mainWindow.focus();
-  }
-
-  return true;
-});
 
 function createWindow() {
   // Create the browser window...
@@ -91,12 +99,10 @@ function createWindow() {
   app.dock.setMenu(dockMenu);
 
   mainWindow.webContents.on("did-finish-load", () => {
-    if (isDev) mainWindow.webContents.openDevTools({ mode: "detach" });
+    if (isDev)
+      mainWindow.webContents.openDevTools({ mode: "detach" });
   });
 
-  mainWindow.once("ready-to-show", () => {
-    mainWindow.show();
-  });
-
-  mainWindow.on("closed", () => mainWindow = null);
+  mainWindow.once("ready-to-show", () => mainWindow.show());
+  mainWindow.on("closed", () => (mainWindow = null));
 }

@@ -1,6 +1,6 @@
 # electron-starter
 
-[![N](https://img.shields.io/badge/%F0%9F%91%8D%F0%9F%8F%BE-NetOperatorWibby/electron--starter-07d0eb.svg?style=flat-square)](https://git.inc.sh/NetOperatorWibby/electron-starter)
+[![WebbHub](https://img.shields.io/badge/%F0%9F%95%B8-c/Starters/electron--starter-07d0eb.svg?style=flat-square)](https://code.webb.page/Starters/electron--starter)
 
 > A super simple and lightweight starting point for your Electron-based app.
 
@@ -10,7 +10,7 @@
 
 ### Features
 - ES7!
-- Lightweight UI rendering via [choo](https://choo.io)!
+- ~~Lightweight UI rendering via [choo](https://choo.io)!~~
 - Minimal transpiling via select [Babel](https://babeljs.io) modules!
 - Quick bundling via [rollup](https://rollupjs.org)!
 - Efficient Sass compilation via [Dart Sass](https://github.com/sass/dart-sass)!
@@ -31,10 +31,9 @@
 - `npm test`
 
 ### License
-Whatever the fuck you want. Do you know how **long** it took me to figure out how to put this together? _And make it up to date?_ A long-ass time. An overwhelming majority of the Internet is totally fine with a bajillion dependencies that do...who cares, I'm not adding all that shit to my projects. KISS my ass.
-
-Together, you and I will make the Web a better place. Let's call this a silent movement, "show and prove," if you will. Beautiful apps are more than the interface. The plumbing should be nice, right? Lipstick on a pig is still paint on a ham sandwich. Respect yourself.
+Whatever you want.
 
 ### TODO
 - Add more meat to this. This is intended as a starting point for my own future apps.
-- ~~Add Sass files and package script.~~
+- Refactor, lots of things changed since this template was created.
+- Replace choo with svelte.

@@ -2,7 +2,7 @@
 
 
 
-//  P A C K A G E S
+//  I M P O R T S
 
 import babel from "rollup-plugin-babel";
 import commonjs from "rollup-plugin-commonjs";
@@ -37,7 +37,7 @@ export default [
         exclude: [
           "node_modules/**",
           "app/gui/sass/**"
-        ],
+        ]
       }),
       (process.env.NODE_ENV !== "development" && uglify()) // only minify in production
     ]
@@ -57,7 +57,7 @@ export default [
     }],
     plugins: [
       babel({
-        exclude: "node_modules/**",
+        exclude: "node_modules/**"
       }),
       (process.env.NODE_ENV !== "development" && uglify()) // only minify in production
     ]
@@ -74,7 +74,7 @@ export default [
     }],
     plugins: [
       babel({
-        exclude: "node_modules/**",
+        exclude: "node_modules/**"
       }),
       (process.env.NODE_ENV !== "development" && uglify()) // only minify in production
     ]
