@@ -20,7 +20,7 @@
     "@babel/runtime": "^7.6.0",
     "@inc/eslint-config": "^2019.7.23",
     "@inc/sasslint-config": "^2019.7.23",
-    "electron": "~6.0.8",
+    "electron": "~9.1.0",
     "electron-builder": "^21.2.0",
     "electron-reloader": "^0.3.0",
     "eslint": "^6.3.0",
